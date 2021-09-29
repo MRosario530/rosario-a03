@@ -35,11 +35,20 @@ public class Solution24 {
         /*  take length of word1
             take length of word2
             if the length of both do not equal, return false
-            otherwise loop to the length of the words
-                compare the char at word1[i] and word2[length-1-i]
-                if they are ever different, return false
-            return true
+            Use alphabetSortedString to sort both strings alphabetically
+                tempW1 = alphabetSortedString(word1)
+                tempW2 = alphabetSortedString(word2)
+            compare the two strings
+            return true if the strings are equal, otherwise return false.
          */
         return true;
+    }
+
+    public String alphabetSortedString(String word){
+        // convert string to char array
+        // sort char array alphabetically
+        // reconvert back into a string
+        // return the string
+        return NULL;
     }
 }
