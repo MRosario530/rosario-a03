@@ -5,27 +5,25 @@
 package baseline;
 
 import java.util.*;
-import java.util.regex.*;
 
 public class Solution25 {
     private static final Scanner input = new Scanner(System.in);
     public static void main(String[] args){
         Solution25 app = new Solution25();
-        /*
-            Declare a string called password
-            Ask the user to enter a string for password
-            Call passwordValidator(password) and assign the returned value to an int passwordRating
-            Call printPasswordStrength(passwordRating, password) and assign the returned value to a String passwordOutput
-            Print passwordOutput
-         */
-
+        // Ask the user to enter a string for password
+        System.out.print("Please enter a password: ");
+        // Declare a string called password
         String password = input.nextLine();
+        // Call passwordValidator(password) and assign the returned value to an int passwordRating
         int passwordRating = app.passwordValidator(password);
+        // Call printPasswordStrength(passwordRating, password) and print the output
         System.out.println(app.printPasswordStrength(passwordRating, password));
     }
 
     public int passwordValidator(String password){
-        //Go through all password checking methods, returning an integer depending on the method
+        // Go through all password checking methods,
+        // returning an integer depending on which password method returns true
+        // If none of the methods return true, return 0 for unknown strength
         if (checkVeryWeakPassword(password)){
             return 1;
         }
@@ -42,69 +40,43 @@ public class Solution25 {
         }
     }
 
-    public boolean checkVeryWeakPassword(String password){
-        // Create a regex string for only integers
-        // Compare the regex to the password to see if it contains only integers
-        // If not return false
-        // Otherwise check the string length
-        // If length is more than 8 return false
-        // Otherwise return true
-        String regex = "^[0-9]+$";
-        Pattern veryWeakPattern = Pattern.compile(regex);
-        Matcher patternMatcher = veryWeakPattern.matcher(password);
-
-        if(!patternMatcher.matches()){
+    private boolean checkVeryWeakPassword(String password){
+        // Compare a regex string to the password to see if it contains only integers
+        // Return false if this is not true
+        if(!password.matches("[0-9]+")){
             return false;
         }else {
+            // Otherwise, check the string length and return whether or not the length is less than 8
             return password.length() < 8;
         }
     }
 
-    public boolean checkWeakPassword(String password){
-        // Create a regex string for only letters
-        // Compare the regex to the password to see if it contains only letters
-        // If not return false
-        // Otherwise check the string length
-        // If length is more than 8 return false
-        // Otherwise return true.
-        String regex = "^[a-zA-Z]+$";
-        Pattern weakPattern = Pattern.compile(regex);
-        Matcher patternMatcher = weakPattern.matcher(password);
-
-        if(!patternMatcher.matches()){
+    private boolean checkWeakPassword(String password){
+        // Compare a regex string to the password to see if it contains only letters
+        // Return false if this is not true
+        if(!password.matches("[a-zA-Z]+")){
             return false;
         }else {
+            // Otherwise, check the string length and return whether or not the length is less than 8
             return password.length() < 8;
         }
     }
 
-    public boolean checkStrongPassword(String password){
-        // Create a regex string for integers and letters
-        // Compare the regex to the password to see if it contains letters and integers
-        // If not return false
-        // Otherwise check the string length
-        // If length is less than 8 return false
-        // Otherwise return true.
-
-        // Pattern special = Pattern.compile (".[!\"#$%&'()*+,-./:;<=>?@\\[\\]^_`{|}~]+$");
-        // Matcher patternMatcher = special.matcher(password);
-        // System.out.println(patternMatcher.matches());
-        // if(!password.matches("^(?=.*[a-zA-Z])(?=.*[0-9]).*$") || patternMatcher.matches()){
-        //    return false;
-        //}else{
-        //    return password.length() >= 8;
-        //}
-
+    private boolean checkStrongPassword(String password){
+        // Compare a regex string to the password to see if it contains only letters and numbers
+        // Return false if this is not true
+        if(!password.matches("[a-zA-Z]+[0-9]+[^!\"#$%&'()*+,\\-./:;<=>?@\\[\\]^_`{|}~]+")){
+            return false;
+        }else {
+            // Otherwise, check the string length and return whether or not the length is more than or equal to 8
+            return password.length() >= 8;
+        }
     }
 
-    public boolean checkVeryStrongPassword(String password){
-        // Create a regex string for integers, letters, and special characters
-        // Compare the regex to the password to see if it contains letters, integers, and special characters
-        // If not return false
-        // Otherwise check the string length
-        // If length is less than 8 return false
-        // Otherwise return true.
-        if(!password.matches("^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9]).*$")){
+    private boolean checkVeryStrongPassword(String password){
+        // Compare a regex string to the password to see if it contains only letters, numbers, and symbols
+        // Return false if this is not true
+        if(!password.matches("(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!\"#$%&'()*+,\\-./:;<=>?@\\[\\]^_`{|}~]).*")){
             return false;
         }else{
             return password.length() >= 8;
@@ -112,14 +84,10 @@ public class Solution25 {
     }
 
     public String printPasswordStrength(int passwordRating, String password){
+
+
         // Create a string passwordOutput which starts with "The password" + password + "is a "
         // Depending on the value of passwordRating add the corresponding words to the string
-        // if passwordRating = 1 add "very weak password."
-        // else if passwordRating = 2 add "weak password."
-        // else if passwordRating = 3 add "strong password."
-        // else if passwordRating = 4 add "very strong password."
-        // else add "password of unknown strength."
-        // return passwordOutput
         String passwordOutput = "The password '" + password + "' is a ";
         if (passwordRating == 1){
             passwordOutput += "very weak password.";
@@ -133,9 +101,10 @@ public class Solution25 {
         else if (passwordRating == 4){
             passwordOutput += "very strong password.";
         } else {
+            // If the value of passwordRating is 0, the words will indicate the strength of the password is unknown
             passwordOutput += "password of unknown strength.";
         }
-
+        // Return passwordOutput
         return passwordOutput;
     }
 }
