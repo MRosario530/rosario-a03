@@ -22,7 +22,7 @@ public class Solution29 {
     public double getUserDouble(){
         double result = 0;
         // Create a variable responsible for maintaining the loop
-        boolean invalidDouble = true;
+        boolean invalidDouble;
         do {
             invalidDouble = false;
             try {
