@@ -20,7 +20,7 @@ public class PaymentCalculator {
         // Calculate them separately and then return the completed result
         double constant = -(1.0/30.0);
         // First calculate b/p to handle the need to round to the nearest cent, then proceed with the rest of the math
-        double numerator = Math.round((balance/monthlyPayment) * 100.0) / 100.0;
+        double numerator = Math.ceil((balance/monthlyPayment) * 100.0) / 100.0;
         numerator = Math.log(1 + numerator * ( 1 - Math.pow(1 + dailyRate, 30)));
         double denominator = Math.log(1 + dailyRate);
         // Return the number of months rounded up to the next total month
