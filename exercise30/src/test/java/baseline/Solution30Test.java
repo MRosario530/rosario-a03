@@ -28,7 +28,7 @@ class Solution30Test {
 
     @Test
     void testFormatMultiplicationTable(){
-        // I was unable to find a successful way of exactly matching strings/stringbuilders of this size due to
-        // newline or spacing errors I could not distinguish
+        // I was unable to find a successful way of exactly matching stringbuilders of the size due to
+        // newline or spacing errors I could not distinguish visually
     }
 }
