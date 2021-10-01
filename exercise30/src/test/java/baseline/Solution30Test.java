@@ -26,9 +26,4 @@ class Solution30Test {
         assertArrayEquals(expectedResult, app.calculateMultiplicationTable());
     }
 
-    @Test
-    void testFormatMultiplicationTable(){
-        // I was unable to find a successful way of exactly matching stringbuilders of the size due to
-        // newline or spacing errors I could not distinguish visually
-    }
 }

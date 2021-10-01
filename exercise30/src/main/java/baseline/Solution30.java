@@ -11,8 +11,8 @@ public class Solution30 {
         Solution30 app = new Solution30();
         // Create a 2d integer array called multTable and call calculateMultiplicationTable()
         int[][] multTable = app.calculateMultiplicationTable();
-        // Call formatMultiplicationTable(multTable) in a print statement
-        System.out.print(app.formatMultiplicationTable(multTable));
+        // Call printMultiplicationTable(multTable) to print the table
+        app.printMultiplicationTable(multTable);
     }
 
     public int[][] calculateMultiplicationTable(){
@@ -29,7 +29,7 @@ public class Solution30 {
         return multTable;
     }
 
-    public StringBuilder formatMultiplicationTable(int[][] multiplicationTable){
+    public void printMultiplicationTable(int[][] multiplicationTable){
         // Create a formatter object and have the output be right shifted
         StringBuilder multTableText = new StringBuilder();
         Formatter formatter = new Formatter(multTableText);
@@ -44,6 +44,6 @@ public class Solution30 {
         // Close the formatter
         formatter.close();
         // Return the string
-        return multTableText;
+        System.out.print(multTableText);
     }
 }
