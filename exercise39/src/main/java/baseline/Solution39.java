@@ -23,9 +23,8 @@ public class Solution39 {
     public List<HashMap<String,String>> createUnsortedRecordList() {
         // Create an arraylist of hashmaps
         ArrayList<HashMap<String,String>> recordList = new ArrayList<>();
-        // For each hashmap in the arraylist, have the keys be in ascending integer order and each parameter
-        // correspond with a key (like 1, firstName)
-        // Initialize and add all records to the arraylist recordlist
+        // Initialize and add all records to the arraylist recordlist using createRecord with
+        // each String related to the employee
         recordList.add(createRecord("John", "Johnson",
                 "Manager","2016-12-31"));
         recordList.add(createRecord("Tou", "Xiong",
