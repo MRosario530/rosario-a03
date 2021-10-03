@@ -7,40 +7,84 @@ package baseline;
 import java.util.*;
 
 public class Solution39 {
+    static final String keyLastName = "Last Name";
+    static final String keySeparation = "Separation Date";
+
     public static void main(String[] args){
+        Solution39 app = new Solution39();
         // Create an arraylist of hashmaps called recordList and call createUnsortedRecordList() to give it values
-        // Call sortRecordList(recordList) to sort by last name
-        // Call formatRecordListString(recordList) and print the returned string to display the result in a tabular format
+        List<HashMap<String,String>> recordList = app.createUnsortedRecordList();
+        // Call displaySortedRecordList(recordList) and save it as a string
+        StringBuilder output = app.displaySortedRecordList(recordList);
+        // Print the returned string to display the result in a tabular format
+        System.out.println(output.toString());
     }
 
-    public ArrayList<HashMap<Integer,ArrayList<String>>> createUnsortedRecordList() {
+    public List<HashMap<String,String>> createUnsortedRecordList() {
         // Create an arraylist of hashmaps
-        // For each hashmap in the arraylist, make the key an integer (which would be an identifier for its position)
-            // Have the key count up (0, 1, 2, etc.)
-            // Call createRecord() with the proper info and have that arraylist be the value
+        ArrayList<HashMap<String,String>> recordList = new ArrayList<>();
+        // For each hashmap in the arraylist, have the keys be in ascending integer order and each parameter
+        // correspond with a key (like 1, firstName)
+        // Initialize and add all records to the arraylist recordlist
+        recordList.add(createRecord("John", "Johnson",
+                "Manager","2016-12-31"));
+        recordList.add(createRecord("Tou", "Xiong",
+                "Software Engineer","2016-10-05"));
+        recordList.add(createRecord("Michaela", "Michaelson",
+                "District Manager","2015-12-19"));
+        recordList.add(createRecord("Jake", "Jacobson",
+                "Programmer",""));
+        recordList.add(createRecord("Jacquelyn", "Jackson",
+                "DBA",""));
+        recordList.add(createRecord("Sally", "Webber",
+                "Web Developer","2015-12-18"));
         // Return the completed arraylist
+        return recordList;
     }
 
-    public ArrayList<HashMap<Integer,ArrayList<String>>> sortRecordList(ArrayList<HashMap<Integer,ArrayList<String>>> recordList) {
-        // Create an arraylist of arraylists called storedRecords
-        // Loop through the recordList, adding each arraylist to storedRecords
-        // Call sort on storedRecords by last name
-        // Go through recordList, replacing the corresponding keys with the values in order
-        // return recordList
-    }
-
-    public String formatRecordListString(ArrayList<HashMap<Integer,ArrayList<String>>> recordList) {
+    public StringBuilder displaySortedRecordList(List<HashMap<String,String>> recordList) {
+        // Sort the recordList
+        sortRecordList(recordList);
         // Create an empty string
-        // Using a formatter, have the first line of the string be the headers and the second line be ---
+        StringBuilder formattedRecordList = new StringBuilder();
+        // Create a formatter to be able to easily format each entry of the list
+        Formatter formatter = new Formatter(formattedRecordList);
+        // Start the string with the labels at the top and beginning line
+        formattedRecordList.append("Name                | Position          | Separation Date\n").
+                append("--------------------|-------------------|----------------\n");
         // Loop through the recordlist, printing the name, position, and separation date with lines between each
+        for (HashMap<String, String> temp : recordList) {
+            String name = temp.get("First Name") + " " + temp.get(keyLastName);
+            formatter.format("%-20s|", name);
+            formatter.format(" %-18s|", temp.get("Position"));
+            if(temp.get(keySeparation).length() != 0) {
+                formatter.format(" %-1s", temp.get(keySeparation));
+            }
+            formattedRecordList.append("\n");
+        }
+        // Close the formatter
+        formatter.close();
         // Return the final string
+        return formattedRecordList;
     }
 
-    private ArrayList<String> createRecord(String firstName, String lastName, String position, String separationDate){
-        // Create an arraylist of strings
-        // In the order of the parameters, add each string to the arraylist
-        // Return the arraylist
+    private void sortRecordList(List<HashMap<String,String>> recordList) {
+        // Set a string representing the key to sort by
+        // Uses the collections.sort with the list and a comparator of HashMap<String, String>
+        // and overide a compare method to compareTo the maps by last name
+        // This code was simplified by solarlint to lambda style
+        recordList.sort(Comparator.comparing(mapOne -> mapOne.get(keyLastName)));
     }
-    
 
+    private HashMap<String,String> createRecord(String firstName, String lastName,
+                                                 String position, String separationDate) {
+        HashMap<String,String> currentRecord = new HashMap<>();
+        // In the order of the parameters, add each string to the HashMap
+        currentRecord.put("First Name",firstName);
+        currentRecord.put(keyLastName,lastName);
+        currentRecord.put("Position",position);
+        currentRecord.put(keySeparation,separationDate);
+        // Return the hashmap
+        return currentRecord;
+    }
 }
