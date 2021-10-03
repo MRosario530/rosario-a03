@@ -78,7 +78,7 @@ public class Solution39 {
     private HashMap<String,String> createRecord(String firstName, String lastName,
                                                  String position, String separationDate) {
         HashMap<String,String> currentRecord = new HashMap<>();
-        // In the order of the parameters, add each string to the HashMap
+        // In the order of the parameters, add each string to the hashmap
         currentRecord.put("First Name",firstName);
         currentRecord.put(keyLastName,lastName);
         currentRecord.put("Position",position);
