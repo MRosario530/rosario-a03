@@ -40,6 +40,29 @@ public class Solution25 {
         }
     }
 
+    public String printPasswordStrength(int passwordRating, String password){
+        // Create a string passwordOutput which starts with "The password" + password + "is a "
+        // Depending on the value of passwordRating add the corresponding words to the string
+        String passwordOutput = "The password '" + password + "' is a ";
+        if (passwordRating == 1){
+            passwordOutput += "very weak password.";
+        }
+        else if (passwordRating == 2){
+            passwordOutput += "weak password.";
+        }
+        else if (passwordRating == 3){
+            passwordOutput += "strong password.";
+        }
+        else if (passwordRating == 4){
+            passwordOutput += "very strong password.";
+        } else {
+            // If the value of passwordRating is 0, the words will indicate the strength of the password is unknown
+            passwordOutput += "password of unknown strength.";
+        }
+        // Return passwordOutput
+        return passwordOutput;
+    }
+
     private boolean checkVeryWeakPassword(String password){
         // Compare a regex string to the password to see if it contains only integers
         // Return false if this is not true
@@ -83,28 +106,5 @@ public class Solution25 {
         }
     }
 
-    public String printPasswordStrength(int passwordRating, String password){
 
-
-        // Create a string passwordOutput which starts with "The password" + password + "is a "
-        // Depending on the value of passwordRating add the corresponding words to the string
-        String passwordOutput = "The password '" + password + "' is a ";
-        if (passwordRating == 1){
-            passwordOutput += "very weak password.";
-        }
-        else if (passwordRating == 2){
-            passwordOutput += "weak password.";
-        }
-        else if (passwordRating == 3){
-            passwordOutput += "strong password.";
-        }
-        else if (passwordRating == 4){
-            passwordOutput += "very strong password.";
-        } else {
-            // If the value of passwordRating is 0, the words will indicate the strength of the password is unknown
-            passwordOutput += "password of unknown strength.";
-        }
-        // Return passwordOutput
-        return passwordOutput;
-    }
 }

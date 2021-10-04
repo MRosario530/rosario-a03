@@ -18,8 +18,7 @@ public class Solution24 {
         // Compare the two words to see if they are anagrams
         boolean result = app.isAnagram(word1, word2);
         // Print out the result
-        app.printResult(result, word1, word2);
-
+        System.out.print(app.createResultString(result, word1, word2));
     }
 
     public String getUserWord(String prompt){
@@ -30,7 +29,7 @@ public class Solution24 {
         return input.nextLine();
     }
 
-    public void printResult(boolean result, String word1, String word2){
+    public String createResultString(boolean result, String word1, String word2){
         // Create initial string
         String output = "\"" + word1 + "\" and \"" + word2 + "\" are";
         // Checks result
@@ -41,8 +40,8 @@ public class Solution24 {
         } else {
             output += " anagrams.";
         }
-        // Print out the result
-        System.out.println(output);
+        // Return the string
+        return output;
     }
 
     public boolean isAnagram(String word1, String word2){
@@ -61,7 +60,7 @@ public class Solution24 {
         }
     }
 
-    public String alphabetSortedString(String word){
+    private String alphabetSortedString(String word){
         // convert string to char array
         char[] wordArray = word.toCharArray();
         // sort char array alphabetically

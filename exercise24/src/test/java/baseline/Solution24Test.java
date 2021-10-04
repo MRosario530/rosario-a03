@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class Solution24Test {
 
     @Test
-    void isAnagram() {
+    void testIsAnagram() {
         Solution24 app = new Solution24();
         boolean actual_result = app.isAnagram("tone", "note");
         boolean expected_result = true;
@@ -15,10 +15,11 @@ class Solution24Test {
     }
 
     @Test
-    void alphabetSortedString(){
+    void testCreateResultString() {
         Solution24 app = new Solution24();
-        String actual_result = app.alphabetSortedString("tone");
-        String expected_result = "enot";
-        assertEquals(expected_result, actual_result);
+        String actualResult = app.createResultString(true,"note","tone");
+        String expectedResult = "\"note\" and \"tone\" are anagrams.";
+        assertEquals(expectedResult,actualResult);
     }
+
 }
